@@ -17,27 +17,43 @@
             width: 80%;
             height: 100px;
         }
+        button:disabled {
+            background-color: #cccccc;
+        }
     </style>
 </head>
 <body>
     <h1>ברוכה הבאה ל-TOMI - מזהה האנונימיות</h1>
     <p>הזיני את השאלה שלך כדי לבדוק אם אפשר לזהות אותך...</p>
     <textarea id="userInput" placeholder="הקלידי כאן את השאלה..."></textarea>
-    <button onclick="analyzeText()">בדיקה</button>
+    <button id="submitButton" onclick="analyzeText()">בדיקה</button>
     <p id="result"></p>
 
     <script>
         function analyzeText() {
             const input = document.getElementById("userInput").value.trim();
             const wordCount = input.split(/\s+/).filter(word => word.length > 0).length;
-            if (wordCount < 30) {
-                document.getElementById("result").innerText = "כדי לתת התאמה, האלגוריתם חייב שתשלחי הודעה אמיתית באורך 30 מילים לפחות.";
+
+            // אם לא הוקלדו לפחות 20 מילים
+            if (wordCount < 20) {
+                document.getElementById("result").innerText = "כדי לתת התאמה, האלגוריתם חייב שתשלחי הודעה אמיתית באורך 20 מילים לפחות.";
                 return;
             }
-            if (/[^\u0590-\u05FF\s?!.,;:()\-]/.test(input)) {
+
+            // אם יש תו שאינו בעברית או תו מיוחד לא מתאים
+            if (/[^\u0590-\u05FF\s?!.,;:()\-0-9]/.test(input)) {
                 document.getElementById("result").innerText = "חובה לכתוב הודעה שמתאימה להעלות בפרוג.";
                 return;
             }
+
+            // אם יש יותר מ-3 מספרים ברצף
+            if (/\d{4,}/.test(input)) {
+                document.getElementById("result").innerText = "חובה לא להכניס יותר מ-3 ספרות ברצף.";
+                return;
+            }
+
+            // חוסם את הכפתור לאחר לחיצה
+            document.getElementById("submitButton").disabled = true;
 
             const responses = [
                 "זיהוי מוצלח! שיעור השחזור: 97.4% (אל תדאגי, אני לא אגלה לאף אחת… או שכן?)",
