@@ -41,7 +41,7 @@
             }
 
             if (/[^\u0590-\u05FF\s'"?!.,;:()\-0-9\uD83C-\uDBFF\uDC00-\uDFFF]/.test(input)) {
-                document.getElementById("result").innerText = "חובה לכתוב הודעה שמתאימה להעלות בפרוג.";
+                document.getElementById("result").innerText = "חובה לכתוב הודעה שמתאימה לעלות בפרוג.";
                 return;
             }
 
@@ -72,9 +72,28 @@
                 "ניתוח מתקדם מצביע על התאמה חזקה עם כותבת קבועה בפורום… רמז דק? 😉",
                 "שימוש מיוחד בניסוחים מסגיר את זהותך… רוצה לשכתב ולנסות שוב?"
             ];
-            
             const randomIndex = Math.floor(Math.random() * responses.length);
-            document.getElementById("result").innerText = responses[randomIndex];
+            const randomNames = [
+                "0548", "B HAPPY", "Bunny", "C", "chaya63", "cherry c", "Dvori B", "efrat1", "Esti B", "Foo Bar",
+                "GLORY", "hadasush", "i am", "java", "LibbyP", "M&C", "mend", "mini mouse", "Miri.K", "mp5", "P.S.",
+                "Python", "Rachel Greenstein", "s2061", "sari1100", "shakshuka", "shifrash", "shira500", "Tweenset", 
+                "undo", "UU", "אחת שכזאת", "אחת111", "אם הבנים שמחה", "אמא ומתכנתת", "אמא5", "אני הקטן", "אני לי", 
+                "אסתר א", "אש הברזל", "ביגר", "במבה נוגט", "ברכי ש", "דוטנטית", "דניאלה כהן", "הייטקיסטית", 
+                "הנדסאית תוכנה", "זה אני", "טסלה", "טריאקי", "יאמי2", "יוכבדא", "ילדונת", "ירושל", "ישראלה ישראלי", 
+                "ל123", "לאהר", "לילה טוב", "לליס", "מ.ש.", "מאה100", "מיכל.", "מירי סלומון", "מלמלה!!", 
+                "ממוחשבת", "מנסה את מזלי", "מסלול מחדש", "מפתחת במהות", "מרנדרת", "מרשימה", "משקיפה מהצד", 
+                "משתדרגת", "נחליאלי(ת)", "סקר קוד", "פרגית", "פרוגיוזרית", "פרייזלר", "פררו רושה", "קיר טיפוס", 
+                "קרן שמש", "ראש צוות", "רביעיה", "רחלשקרקה", "רפ", "רקפת3", "ש. נ. ד.", "שולמית הופמן", "שירה 123", 
+                "שתים", "תבור", "תודה על חיים...", "תמרוווש"
+            ];
+
+            // בוחר שני שמות רנדומליים מהרשימה
+            const randomName1 = randomNames[Math.floor(Math.random() * randomNames.length)];
+            const randomName2 = randomNames[Math.floor(Math.random() * randomNames.length)];
+
+            // מציג את התשובה הרנדומלית וההמלצה על השמות
+            document.getElementById("result").innerText = responses[randomIndex] + "\nככל הנראה את " + randomName1 + " או " + randomName2;
+    
         }
     </script>
 </body>
