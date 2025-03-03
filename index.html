@@ -40,7 +40,7 @@
                 return;
             }
 
-            if (/[^\u0590-\u05FF\s?!.,;:()\-0-9\uD83C-\uDBFF\uDC00-\uDFFF]/.test(input)) {
+            if (/[^\u0590-\u05FF\s'"?!.,;:()\-0-9\uD83C-\uDBFF\uDC00-\uDFFF]/.test(input)) {
                 document.getElementById("result").innerText = "חובה לכתוב הודעה שמתאימה להעלות בפרוג.";
                 return;
             }
